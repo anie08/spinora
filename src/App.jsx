@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import Randomiser from "./Spinora2/Spinora.jsx";
+import {useState} from 'react'
+import Layout from "./component/layout/Layout.jsx";
 
-function App() {
+const App = () => {
+    return (
+        <div>
+            <Layout/>
+        </div>
+    );
+};
 
-  return (
-    <div>
-<Randomiser/>
-    </div>
-  )
-}
-
-export default App
+export default App;
