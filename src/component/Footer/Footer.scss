@@ -1,0 +1,148 @@
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38rem;
+  max-width: 900px;
+  padding: 0 20px;
+gap :15px;
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.box-one {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+
+  .box-one_box-one {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .bet-value {
+      position: absolute;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}
+
+.control-btn {
+  position: absolute;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.minus-btn {
+  left: 8px;
+}
+
+.plus-btn {
+  right: 8px;
+}
+
+.contCoin {
+  position: relative;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .coin {
+    position: absolute;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.betPanel {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.conButton {
+  position: relative;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .turbo {
+    position: absolute;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.boxSecond {
+  position: relative;
+  width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .balance-value {
+    position: absolute;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+  }
+}
