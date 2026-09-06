@@ -6,17 +6,16 @@ import button from "../../assets/background/betPanel/button.png";
 import box from "../../assets/background/betPanel/box.png";
 import betPanel from "../../assets/intro/bet-panel.png";
 import "./Footer.scss";
-import { useState, useEffect } from "react"; 
+import { useState } from "react";
 
-const Footer = ({ spin, bet, increaseBet, decreaseBet, winResult }) => {
-  const [sum, setSum] = useState(100);
-
-  useEffect(() => {
-    if (winResult > 0) {
-      setSum((prev) => +(prev + parseFloat(winResult)).toFixed(2));
-    }
-  }, [winResult]);
-
+const Footer = ({
+  spin,
+  bet,
+  increaseBet,
+  decreaseBet,
+  winResult,
+  totalAmount,
+}) => {
   return (
     <div className="footer">
       <div className="footer__container">
@@ -59,7 +58,7 @@ const Footer = ({ spin, bet, increaseBet, decreaseBet, winResult }) => {
 
         <div className="boxSecond">
           <img src={box} alt="box" />
-          <span className="balance-value">{sum.toFixed(2)}</span>
+          <span className="balance-value">{totalAmount.toFixed(2)}</span>
         </div>
       </div>
     </div>

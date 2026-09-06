@@ -3,7 +3,8 @@ import ss from "../../assets/common/win-modal.png";
 import Wheel from "../Wheel/Wheel.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Header from "../Header/Header.jsx";
-import { useState } from "react";
+import closeModal from "../../assets/common/close.svg";
+import { useState, useEffect } from "react";
 
 const sectors = [
   "0X",
@@ -40,29 +41,44 @@ const bigLength = bigSectors.length;
 const sectorDegree = 360 / length;
 const sectorBdegree = 360 / bigLength;
 
+const stepAmount = 20;
+
 const Layout = () => {
   const [spining, setSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
-  const [bet, setBet] = useState(0.1);
+  const [bet, setBet] = useState(20);
   const [bigSpinning, setBigSpinning] = useState(false);
   const [bigRotation, setBigRotation] = useState(0);
   const [winResult, SetwinResult] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [totalAmount, setTotalAmount] = useState(100);
+  const [insufficientFunds, setInsufficientFunds] = useState(false);
 
   const increaseBet = () => {
-    setBet((prev) => +(prev + 0.1).toFixed(2));
+    const nextBet = Number((bet + stepAmount).toFixed(2));
+    if (nextBet <= totalAmount) {
+      setBet(nextBet);
+    } else {
+      setInsufficientFunds(true);
+    }
   };
-
   const decreaseBet = () => {
-    setBet((prev) => (prev > 0.1 ? +(prev - 0.1).toFixed(2) : 0.1));
-
+    setBet((prev) =>
+      prev > stepAmount ? +(prev - stepAmount).toFixed(2) : stepAmount,
+    );
   };
-
 
   const spin = () => {
     if (spining || bigSpinning) {
       return;
     }
+
+    if (totalAmount < bet) {
+      setInsufficientFunds(true);
+      return;
+    }
+
+    setTotalAmount((prev) => +(prev - bet).toFixed(2));
 
     setSpinning(true);
     setShowModal(false);
@@ -70,9 +86,7 @@ const Layout = () => {
     const randomIndex = Math.floor(Math.random() * length);
     const landedSector = sectors[randomIndex];
 
-
     console.log(sectors[randomIndex]);
-
 
     const fullRotations = 360 * 5;
     const targetDegree = fullRotations + randomIndex * sectorDegree;
@@ -99,6 +113,23 @@ const Layout = () => {
       }
     }, 3000);
   };
+  const handleCloseNotEnoughModal = () => {
+    setInsufficientFunds(false);
+  };
+  useEffect(() => {
+    if (winResult > 0) {
+      setTotalAmount((prev) => +(prev + parseFloat(winResult)).toFixed(2));
+    }
+  }, [winResult]);
+
+  // useEffect(() => {
+  //   if (bet > sum) {
+  //     setSum((currentSum) => {
+  //       setBet(currentSum > 0.1 ? currentSum : 0.1);
+  //       return currentSum;
+  //     });
+  //   }
+  // }, [sum]);
 
   const startBigWheelSpin = () => {
     setBigSpinning(true);
@@ -117,6 +148,7 @@ const Layout = () => {
       setBigSpinning(false);
 
       const multiplier = parseFloat(landedBsector.replace("X", ""));
+
       const totalWin = (bet * multiplier).toFixed(2);
 
       SetwinResult(totalWin);
@@ -140,15 +172,32 @@ const Layout = () => {
         increaseBet={increaseBet}
         decreaseBet={decreaseBet}
         winResult={winResult}
+        totalAmount={totalAmount}
       />
+      {/*{showModal && (*/}
+      <div className="modal-overlay">
+        <div className="win-modal-content">
+          <img src={ss} alt="Win Modal" className="modal-bg" />
+          <div className="win-result-text">
+            <h2>You Win!</h2>
+            <p>{winResult}123213 🪙</p>
+          </div>
+        </div>
+      </div>
+      {/*)}*/}
 
-      {showModal && (
+      {insufficientFunds && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <img src={ss} alt="Win Modal" className="modal-bg" />
+            <button
+              className="close-modal-btn"
+              onClick={handleCloseNotEnoughModal}
+            >
+              <img src={closeModal} alt="Close" />
+            </button>
             <div className="win-result-text">
-              <h2>You Win!</h2>
-              <p>{winResult} 🪙</p>
+              <h2>insufficientFunds</h2>
+              <p>decrement your bet </p>
             </div>
           </div>
         </div>
