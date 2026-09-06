@@ -43,19 +43,21 @@ const sectorBdegree = 360 / bigLength;
 const Layout = () => {
   const [spining, setSpinning] = useState(false);
   const [rotation, setRotation] = useState(0);
-  const [bet, setBet] = useState(0.10);
+  const [bet, setBet] = useState(0.1);
   const [bigSpinning, setBigSpinning] = useState(false);
   const [bigRotation, setBigRotation] = useState(0);
   const [winResult, SetwinResult] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
   const increaseBet = () => {
-    setBet((prev) => +(prev + 0.10).toFixed(2));
+    setBet((prev) => +(prev + 0.1).toFixed(2));
   };
 
   const decreaseBet = () => {
-    setBet((prev) => (prev > 0.10 ? +(prev - 0.10).toFixed(2) : 0.10));
+    setBet((prev) => (prev > 0.1 ? +(prev - 0.1).toFixed(2) : 0.1));
+
   };
+
 
   const spin = () => {
     if (spining || bigSpinning) {
@@ -68,7 +70,9 @@ const Layout = () => {
     const randomIndex = Math.floor(Math.random() * length);
     const landedSector = sectors[randomIndex];
 
+
     console.log(sectors[randomIndex]);
+
 
     const fullRotations = 360 * 5;
     const targetDegree = fullRotations + randomIndex * sectorDegree;
@@ -83,7 +87,7 @@ const Layout = () => {
       } else {
         const multiplier = parseFloat(landedSector.replace("X", ""));
         const totalWin = (bet * multiplier).toFixed(2);
-        
+
         SetwinResult(totalWin);
 
         if (parseFloat(totalWin) > 0) {
@@ -130,10 +134,10 @@ const Layout = () => {
     <div className="container">
       <Header />
       <Wheel spin={spin} rotation={rotation} bigRotation={bigRotation} />
-      <Footer 
-        spin={spin} 
-        bet={bet} 
-        increaseBet={increaseBet} 
+      <Footer
+        spin={spin}
+        bet={bet}
+        increaseBet={increaseBet}
         decreaseBet={decreaseBet}
         winResult={winResult}
       />

@@ -1,16 +1,87 @@
 import logo from "../../assets/header/logo.png";
 import menuBtn from "../../assets/header/menu-button.png";
-
+import burgerMenu from "../../assets/common/burgerMenu.svg";
+import close from "../../assets/common/close.svg";
+import audio from "../../assets/common/audio.svg";
 import "./Header.scss";
+import { useState, useEffect, useRef } from "react";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAudioActive, setIsAudioActive] = useState(true);
+  const menuRef = useRef(null); // Հղում մենյուի բլոկի վրա
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleAudio = () => {
+    setIsAudioActive(!isAudioActive);
+  };
+
+  // Ֆունկցիա, որը փակում է մենյուն, եթե սեղմել ենք դրսում
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <div className="header">
       <div className="logo">
         <img src={logo} alt="Logo" />
       </div>
-      <div className="menuBtn">
-        <img src={menuBtn} alt="Menu" className="menuBtn" />
+
+      {/* Տեղադրել ենք ref-ը ամբողջ աջ հատվածի վրա, որպեսզի կոճակների վրա կամ դրսում սեղմելիս ճիշտ աշխատի */}
+      <div className="header-right" ref={menuRef}>
+        {/* Ձայնի կոճակը՝ կողքը */}
+        <div className="audioBtn" onClick={toggleAudio}>
+          <img src={menuBtn} alt="Audio Background" className="menu-bg" />
+          <img src={audio} alt="Audio Icon" className="audio-icon" />
+        </div>
+
+        {/* Մենյուի կոճակը */}
+        <div className="menuBtn" onClick={toggleMenu}>
+          <img src={menuBtn} alt="Menu Background" className="menu-bg" />
+          <img
+            src={isOpen ? close : burgerMenu}
+            alt={isOpen ? "Close" : "Burger Menu"}
+            className="menu-icon"
+          />
+        </div>
+
+        {/* Բացվող մենյուի պանելը */}
+        {isOpen && (
+          <div className="dropdown-menu">
+            {/*<div className="menu-top-bar">*/}
+            {/*  <div className="audio-in-menu" onClick={toggleAudio}>*/}
+            {/*    <img src={menuBtn} alt="Bg" className="menu-bg" />*/}
+            {/*    <img src={audio} alt="Audio" className="audio-icon" />*/}
+            {/*  </div>*/}
+            {/*  <div className="close-in-menu" onClick={toggleMenu}>*/}
+            {/*    <img src={menuBtn} alt="Bg" className="menu-bg" />*/}
+            {/*    <img src={close} alt="Close" className="close-icon" />*/}
+            {/*  </div>*/}
+            {/*</div>*/}
+
+            <div className="menu-item">
+              <span>Bet History</span>
+            </div>
+            <div className="menu-item">
+              <span>Game Guide</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import "./Footer.scss";
 import { useState, useEffect } from "react"; 
 
 const Footer = ({ spin, bet, increaseBet, decreaseBet, winResult }) => {
-  const [sum, setSum] = useState(0); 
+  const [sum, setSum] = useState(100);
 
   useEffect(() => {
     if (winResult > 0) {
