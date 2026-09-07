@@ -1,10 +1,9 @@
 import "./Layout.scss";
-import ss from "../../assets/common/win-modal.png";
 import Wheel from "../Wheel/Wheel.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Header from "../Header/Header.jsx";
 import closeModal from "../../assets/common/close.svg";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const sectors = [
   "0X",
@@ -50,6 +49,7 @@ const Layout = () => {
   const [bigSpinning, setBigSpinning] = useState(false);
   const [bigRotation, setBigRotation] = useState(0);
   const [winResult, SetwinResult] = useState(0);
+  const [winMultiplier, setWinMultiplier] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [totalAmount, setTotalAmount] = useState(100);
   const [insufficientFunds, setInsufficientFunds] = useState(false);
@@ -58,9 +58,10 @@ const Layout = () => {
     const nextBet = Number((bet + stepAmount).toFixed(2));
     if (nextBet <= totalAmount) {
       setBet(nextBet);
-    } else {
-      setInsufficientFunds(true);
     }
+    // else {
+    //   setInsufficientFunds(true);
+    // }
   };
   const decreaseBet = () => {
     setBet((prev) =>
@@ -103,6 +104,9 @@ const Layout = () => {
         const totalWin = (bet * multiplier).toFixed(2);
 
         SetwinResult(totalWin);
+        setTotalAmount((prev) => +(prev + parseFloat(totalWin)).toFixed(2));
+
+        setWinMultiplier(landedSector);
 
         if (parseFloat(totalWin) > 0) {
           setShowModal(true);
@@ -116,20 +120,6 @@ const Layout = () => {
   const handleCloseNotEnoughModal = () => {
     setInsufficientFunds(false);
   };
-  useEffect(() => {
-    if (winResult > 0) {
-      setTotalAmount((prev) => +(prev + parseFloat(winResult)).toFixed(2));
-    }
-  }, [winResult]);
-
-  // useEffect(() => {
-  //   if (bet > sum) {
-  //     setSum((currentSum) => {
-  //       setBet(currentSum > 0.1 ? currentSum : 0.1);
-  //       return currentSum;
-  //     });
-  //   }
-  // }, [sum]);
 
   const startBigWheelSpin = () => {
     setBigSpinning(true);
@@ -152,6 +142,9 @@ const Layout = () => {
       const totalWin = (bet * multiplier).toFixed(2);
 
       SetwinResult(totalWin);
+      setTotalAmount((prev) => +(prev + parseFloat(totalWin)).toFixed(2));
+
+      setWinMultiplier(landedBsector);
 
       if (parseFloat(totalWin) > 0) {
         setShowModal(true);
@@ -174,17 +167,19 @@ const Layout = () => {
         winResult={winResult}
         totalAmount={totalAmount}
       />
-      {/*{showModal && (*/}
-      <div className="modal-overlay">
-        <div className="win-modal-content">
-          <img src={ss} alt="Win Modal" className="modal-bg" />
-          <div className="win-result-text">
-            <h2>You Win!</h2>
-            <p>{winResult}123213 🪙</p>
+
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="win-modal-content">
+            {/*<img src={ss} alt="Win Modal" className="modal-bg" />*/}
+            <div className="win-result-text">
+              <h2>You Win!</h2>
+              <p className="win-result-text_win-result">{winResult} </p>
+              <p className="win-result-text_win-result">{winMultiplier} </p>
+            </div>
           </div>
         </div>
-      </div>
-      {/*)}*/}
+      )}
 
       {insufficientFunds && (
         <div className="modal-overlay">

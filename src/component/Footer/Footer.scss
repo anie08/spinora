@@ -13,7 +13,7 @@
   justify-content: center;
   width: 95%;
   max-width: 920px;
-  gap: 2px;
+  gap: 8px;
 
   img {
     width: 100%;
@@ -21,35 +21,34 @@
   }
 }
 
-
 .box-one,
 .boxSecond {
-  position: relative;
+  //position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 195px;
   flex-shrink: 0;
+  padding: 0 10px 0;
+  //transition: transform 0.2s;
+  background-color: transparent;
+  background-image: url("../../assets/background/betPanel/box.png");
+  background-size: 100% 100%;
 
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
 }
 
 .box-one_box-one {
   width: 100%;
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 60px;
 
   .bet-value {
-    position: absolute;
+    //position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    //transform: translate(-50%, -50%);
     color: #fff;
     font-weight: bold;
     font-size: 16px;
@@ -57,7 +56,6 @@
 }
 
 .control-btn {
-  position: absolute;
   z-index: 2;
   width: 28px;
   height: 28px;
@@ -69,18 +67,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 50%;
-  transform: translateY(-50%);
 
   img {
     width: 15px;
     height: 15px;
     object-fit: contain;
     filter: brightness(0) invert(1);
-  }
-
-  &:active {
-    transform: translateY(-50%) scale(0.93);
   }
 }
 
@@ -103,13 +95,19 @@
   cursor: pointer;
   position: relative;
 
-
   .button {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s;
+    background-color: transparent;
+    background-image: url("../../assets/background/betPanel/button.png");
+    background-size: 100% 100%;
+    border: none;
 
     img {
       width: 100%;
@@ -136,29 +134,40 @@
 }
 
 .betPanel {
-  width: 166px;
+  width: 146px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   margin-top: -20px;
-
-  img {
-    width: 100%;
-    object-fit: contain;
-  }
+  height: 100%;
+  position: relative;
+  transition: transform 0.2s;
+  background-color: transparent;
+  background-image: url("../../assets/intro/button.png");
+  background-size: 100% 100%;
+  border: none;
+  aspect-ratio: 1;
 
   &:active {
     transform: scale(0.96);
   }
 }
 
+.rotate {
+  width: 40%;
+  object-fit: contain;
+}
+
 .balance-value {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  //top: 50%;
+  //left: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
   color: #fff;
   font-weight: bold;
   font-size: 16px;

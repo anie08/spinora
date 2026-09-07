@@ -54,6 +54,15 @@ body {
   margin: 0;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
 #root {
   width: 1126px;
   max-width: 100%;

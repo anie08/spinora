@@ -1,10 +1,7 @@
-import {useState} from 'react'
 import Layout from "./component/layout/Layout.jsx";
 
 const App = () => {
-  return (
-    <Layout/>
-  );
+  return <Layout />;
 };
 
 export default App;
