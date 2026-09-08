@@ -1,0 +1,239 @@
+.mobile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.mobile-container_spin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-container_spin_spin {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("../../assets/intro/button.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  padding: 0;
+  transition: transform 0.2s;
+
+  @media (max-width: 480px) {
+    width: 95px;
+    height: 95px;
+  }
+}
+
+.mobile-container_spin_spin:active {
+  transform: scale(0.96);
+}
+
+.mobile-container_spin_spin_rotate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mobile-container_spin_spin_rotate img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+
+  @media (max-width: 480px) {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+.mobile-container_spin_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  aspect-ratio: 1;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url("../../assets/background/betPanel/mobile-plus-minus.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 0;
+
+  @media (max-width: 480px) {
+    width: 70px;
+  }
+}
+
+.mobile-container_spin_button_inc-dec,
+.mobile-container_spin_button_inc-inc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.mobile-container_spin_button_inc-dec img,
+.mobile-container_spin_button_inc-inc img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.minus-btn {
+  transform: scaleX(-1);
+}
+
+.minus-btn .minus {
+  transform: scaleX(-1);
+}
+
+.mobile-container_bet-amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  width: 320px;
+  max-width: 90%;
+  background: rgba(50, 25, 10, 0.85);
+  border-radius: 20px;
+  border: 1.5px solid rgba(218, 165, 32, 0.6);
+  overflow: hidden;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 320px;
+    padding: 5px 10px;
+  }
+}
+
+.mobile-container_bet-amount_cont {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  padding: 0;
+  gap: 8px;
+  width: calc((100% - 44px - 16px) / 2);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.mobile-container_bet-amount_cont:first-of-type {
+  justify-content: flex-start;
+}
+
+.mobile-container_bet-amount_cont--reverse {
+  justify-content: flex-end;
+}
+
+.mobile-container_bet-amount_text-box {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.mobile-container_bet-amount_cont:not(.mobile-container_bet-amount_cont--reverse) .mobile-container_bet-amount_text-box {
+  text-align: right;
+}
+
+.mobile-container_bet-amount_cont--reverse .mobile-container_bet-amount_text-box {
+  text-align: right;
+}
+
+.mobile-container_bet-amount_label {
+  color: #ffdead;
+  font-size: 12px;
+  font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 11px;
+  }
+}
+
+.mobile-container_bet-amount_bet_balance_text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+}
+
+.mobile-container_bet-amount_bet {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #d4af37, #8b6508);
+  border: 1.5px solid #ffec8b;
+  border-radius: 12px;
+
+  @media (max-width: 480px) {
+    width: 34px;
+    height: 34px;
+    padding: 4px;
+  }
+}
+
+.mobile-container_bet-amount_bet img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+
+  @media (max-width: 480px) {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.mobile-container_bet-amount_turbo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #ff8c00, #ff4500);
+  border: 1.5px solid #ffd700;
+  border-radius: 12px;
+
+  @media (max-width: 480px) {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.mobile-container_bet-amount_turbo img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+
+  @media (max-width: 480px) {
+    width: 20px;
+    height: 20px;
+  }
+}

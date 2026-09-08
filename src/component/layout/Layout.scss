@@ -123,11 +123,7 @@ html, body, #root {
         color: #ff3b30;
       }
 
-      //p {
-      //  margin: 0;
-      //  font-size: 14px;
-      //  color: #ccc;
-      //}
+
     }
   }
 }
@@ -138,9 +134,9 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: center;
-   width: auto;
-   height: auto;
-//border:3px solid  #3b220e;
+  width: auto;
+  height: auto;
+  //border:3px solid  #3b220e;
   /* cursor: pointer; */
   transition: transform 0.2s;
   padding: 5px;
@@ -148,4 +144,26 @@ html, body, #root {
   border-radius: 15%;
   backdrop-filter: blur(3px);
 
+}
+
+.desktop-footer-wrapper {
+  display: block;
+}
+
+.mobile-footer-wrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-footer-wrapper {
+    display: none ;
+  }
+
+  .mobile-footer-wrapper {
+    display: block ;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
 }

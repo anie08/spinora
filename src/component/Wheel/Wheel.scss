@@ -1,19 +1,32 @@
 .wheelContainer {
   flex: 1;
   display: flex;
-  align-items: flex-start; 
+  align-items: center;
   justify-content: center;
   transition: 0.3s;
   padding-top: 40px;
+  top: 50px;
+
+  @media (max-width: 768px) {
+    padding-top: 20px;
+  }
 }
 
 .wheelContainer-inner {
-  width: min(30vw, 45vh);
+  width: 17rem;
   aspect-ratio: 1;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 14rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 15.5rem;
+  }
 }
 
 .wheelContainer-inner img {

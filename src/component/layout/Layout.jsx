@@ -2,6 +2,7 @@ import "./Layout.scss";
 import Wheel from "../Wheel/Wheel.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Header from "../Header/Header.jsx";
+import Mobile from "../Mobile/Mobile.jsx";
 import closeModal from "../../assets/common/close.svg";
 import { useEffect, useState } from "react";
 
@@ -159,15 +160,26 @@ const Layout = () => {
     <div className="container">
       <Header />
       <Wheel spin={spin} rotation={rotation} bigRotation={bigRotation} />
-      <Footer
-        spin={spin}
-        bet={bet}
-        increaseBet={increaseBet}
-        decreaseBet={decreaseBet}
-        winResult={winResult}
-        totalAmount={totalAmount}
-      />
-
+      <div className="desktop-footer-wrapper">
+        <Footer
+          spin={spin}
+          bet={bet}
+          increaseBet={increaseBet}
+          decreaseBet={decreaseBet}
+          winResult={winResult}
+          totalAmount={totalAmount}
+        />
+      </div>
+      <div className="mobile-footer-wrapper">
+        <Mobile
+          spin={spin}
+          bet={bet}
+          increaseBet={increaseBet}
+          decreaseBet={decreaseBet}
+          winResult={winResult}
+          totalAmount={totalAmount}
+        />
+      </div>
       {showModal && (
         <div className="modal-overlay">
           <div className="win-modal-content">
