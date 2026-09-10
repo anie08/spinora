@@ -5,6 +5,8 @@ import turbo from "../../assets/common/turbo.svg";
 import rotate from "../../assets/common/spin-icon.svg";
 
 import "./Footer.scss";
+import close from "../../assets/common/close.svg";
+// import burgerMenu from "../../assets/common/burgerMenu.svg";
 // import { useState } from "react";
 
 const Footer = ({
@@ -14,6 +16,8 @@ const Footer = ({
   decreaseBet,
   // winResult,
   totalAmount,
+  isTurbo,
+  toggleTurbo,
 }) => {
   return (
     <div className="footer">
@@ -48,14 +52,15 @@ const Footer = ({
         </button>
 
         <div className="conButton">
-          <button className="button">
-            {/*<img src={button} alt="button" />*/}
+          <button
+            className={`button ${isTurbo ? "active-turbo" : ""}`}
+            onClick={toggleTurbo}
+          >
             <span className="turbo">
               <img src={turbo} alt="turbo" />
             </span>
           </button>
         </div>
-
         <div className="boxSecond">
           {/*<img src={box} alt="box" />*/}
           <span className="balance-value">{totalAmount.toFixed(2)}</span>

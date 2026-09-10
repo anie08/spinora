@@ -42,14 +42,11 @@ const Header = () => {
         <img src={logo} alt="Logo" />
       </div>
 
-      {/* Տեղադրել ենք ref-ը ամբողջ աջ հատվածի վրա, որպեսզի կոճակների վրա կամ դրսում սեղմելիս ճիշտ աշխատի */}
       <div className="header-right" ref={menuRef}>
-        {/* Ձայնի կոճակը՝ կողքը */}
         <button className="menuBtn" onClick={toggleAudio}>
           <img src={audio} alt="Audio Icon" />
         </button>
 
-        {/* Մենյուի կոճակը */}
         <button className="menuBtn" onClick={toggleMenu}>
           <img
             src={isOpen ? close : burgerMenu}
@@ -57,7 +54,6 @@ const Header = () => {
           />
         </button>
 
-        {/* Բացվող մենյուի պանելը */}
         {isOpen && (
           <div className="dropdown-menu">
             {/*<div className="menu-top-bar">*/}

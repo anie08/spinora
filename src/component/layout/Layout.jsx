@@ -54,6 +54,11 @@ const Layout = () => {
   const [showModal, setShowModal] = useState(false);
   const [totalAmount, setTotalAmount] = useState(100);
   const [insufficientFunds, setInsufficientFunds] = useState(false);
+  const [isTurbo, setIsTurbo] = useState(false);
+  const spinDuration = isTurbo ? 600 : 3000;
+  const toggleTurbo = () => {
+    setIsTurbo((prev) => !prev);
+  };
 
   const increaseBet = () => {
     const nextBet = Number((bet + stepAmount).toFixed(2));
@@ -74,6 +79,7 @@ const Layout = () => {
     if (spining || bigSpinning) {
       return;
     }
+    console.log("Initial Balance:", totalAmount, "Bet:", bet);
 
     if (totalAmount < bet) {
       setInsufficientFunds(true);
@@ -90,8 +96,9 @@ const Layout = () => {
 
     console.log(sectors[randomIndex]);
 
-    const fullRotations = 360 * 5;
+    const fullRotations = isTurbo ? 360 * 3 : 360 * 5;
     const targetDegree = fullRotations + randomIndex * sectorDegree;
+    const spinDuration = isTurbo ? 600 : 3000;
 
     setRotation((prev) => prev + targetDegree - (prev % 360));
 
@@ -116,7 +123,7 @@ const Layout = () => {
           }, 3000);
         }
       }
-    }, 3000);
+    }, spinDuration);
   };
   const handleCloseNotEnoughModal = () => {
     setInsufficientFunds(false);
@@ -153,13 +160,18 @@ const Layout = () => {
           setShowModal(false);
         }, 3000);
       }
-    }, 3000);
+    }, spinDuration);
   };
 
   return (
     <div className="container">
       <Header />
-      <Wheel spin={spin} rotation={rotation} bigRotation={bigRotation} />
+      <Wheel
+        spin={spin}
+        rotation={rotation}
+        bigRotation={bigRotation}
+        spinDuration={spinDuration}
+      />
       <div className="desktop-footer-wrapper">
         <Footer
           spin={spin}
@@ -168,6 +180,8 @@ const Layout = () => {
           decreaseBet={decreaseBet}
           winResult={winResult}
           totalAmount={totalAmount}
+          toggleTurbo={toggleTurbo}
+          isTurbo={isTurbo}
         />
       </div>
       <div className="mobile-footer-wrapper">
@@ -178,6 +192,8 @@ const Layout = () => {
           decreaseBet={decreaseBet}
           winResult={winResult}
           totalAmount={totalAmount}
+          isTurbo={isTurbo}
+          toggleTurbo={toggleTurbo}
         />
       </div>
       {showModal && (

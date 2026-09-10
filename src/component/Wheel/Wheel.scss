@@ -54,13 +54,16 @@
 }
 
 .topBoardCont {
-  z-index: 1;
+  z-index: 3; // 👈 Բարձրացրել ենք, որ տախտակն ու պարանները լինեն անիվից վերև
   width: 138%;
   top: 29px;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -65%);
+  display: flex;
+  justify-content: center;
 }
+
 
 .littleCont {
   z-index: 3;
@@ -93,4 +96,34 @@
   transform: translate(-50%, -90%);
   top: 50%;
   left: 50%;
+}
+.topBoardCont {
+  z-index: 3;
+  width: 138%;
+  top: 29px;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -65%);
+  display: flex;
+  justify-content: center;
+}
+
+.rope {
+  position: absolute;
+  top: 0%;
+  width: 14px;
+  height: 150px;
+  background-image: url("../../assets/background/wheels/rope.png");
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+  background-size: 14px 25px;
+  z-index: -1;
+}
+
+.rope-left {
+  left: 19%;
+}
+
+.rope-right {
+  right: 19%;
 }
